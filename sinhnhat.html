@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="container">
+        <button class="button" onclick="openCard()">🌽</button>
+    </div>
+    
+    <div class="card" id="card">
+        <span class="close" onclick="closeCard()">&times;</span>
+        <h2 id="typing-header"></h2>
+        <img src="image/482711631_18037429685412131_9033832024964688326_n.jpg" alt="Chúc mừng" width="100%">
+        <p id="typing-message"></p>
+    </div>
+
+    <script>
+        function openCard() {
+            let card = document.getElementById('card');
+            card.style.display = 'block';
+            card.style.animation = "fadeIn 1s forwards";
+            releaseBalloons();
+            
+            
+            typeText("typing-header", "Nhân dịp ngày 8/3 ❤️", 100);
+            setTimeout(() => {
+                typeText("typing-message", "Chúc chị 🌽 luôn vui vẻ, mạnh khỏe và hạnh phúc! 💖 Cảm ơn chị vì đã luôn mang đến những điều tốt đẹp cho mọi người trên live. Chúc chị một ngày 8/3 tuyệt vời và tràn đầy yêu thương!", 50);
+            }, 2000);
+        }
+
+        function closeCard() {
+            document.getElementById('card').style.display = 'none';
+        }
+
+        function releaseBalloons() {
+            for (let i = 0; i < 10; i++) {
+                let balloon = document.createElement("div");
+                balloon.classList.add("balloon");
+                balloon.innerHTML = "🎈";
+                balloon.style.left = Math.random() * 100 + "vw";
+                balloon.style.animationDuration = (3 + Math.random() * 2) + "s";
+                document.body.appendChild(balloon);
+                setTimeout(() => balloon.remove(), 4000);
+            }
+        }
+
+        function typeText(elementId, text, speed) {
+            let element = document.getElementById(elementId);
+            element.innerHTML = "";
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+    </script>
+</body>
+</html>
